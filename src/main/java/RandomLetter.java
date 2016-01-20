@@ -7,15 +7,24 @@ public class RandomLetter {
     private char randLetter;
     private Random mRandom;
 
-    public char getRandLetter(){
-        return 0;
+    public RandomLetter(){
+        mRandom = new Random();
+    }
+
+    public char getRandomLetter(){
+        return assignLetter();
     }
 
     private char assignLetter(){
-        return 0;
+        int number = randomNum();
+        this.randLetter = (char) number;
+        return this.randLetter;
     }
 
-    private int randNum(){
-        return 0;
+    private int randomNum(){
+        int maximum = 90;
+        int minimum = 65;
+        int range = maximum - minimum + 1;
+        return mRandom.nextInt(range) + minimum;
     }
 }

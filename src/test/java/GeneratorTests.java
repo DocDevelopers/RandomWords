@@ -5,12 +5,13 @@ import static org.junit.Assert.*;
  * Created by Doc on 1/19/16.
  */
 public class GeneratorTests {
-    char[] pattern = {'A','B','C'};
-    Generator mGenerator = new Generator(pattern, 3, false);
+    char[] pattern = {'B','U','L','L'};
+    Generator mGenerator = new Generator(pattern, 1000000, false);
 
     @Test
     public void TestPattern(){
         String sentence = mGenerator.generate();
+        System.out.println(sentence);
 
         String[] words = sentence.split("\\s+");
 
