@@ -5,26 +5,26 @@ import java.util.Random;
  */
 public class RandomLetter {
     private char randLetter;
-    private Random mRandom;
+    private Random qRandom;
 
     public RandomLetter(){
-        mRandom = new Random();
+        qRandom = new Random();
     }
 
-    public char getRandomLetter(){
+    public char getRandLetter(){
         return assignLetter();
     }
 
     private char assignLetter(){
-        int number = randomNum();
+        int number = randNum();
         this.randLetter = (char) number;
         return this.randLetter;
     }
 
-    private int randomNum(){
+    private int randNum(){
         int maximum = 90;
         int minimum = 65;
         int range = maximum - minimum + 1;
-        return mRandom.nextInt(range) + minimum;
+        return qRandom.nextInt(range) + minimum;
     }
 }

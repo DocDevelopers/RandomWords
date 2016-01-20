@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.StringTokenizer;
 
 /**
  * Created by Doc on 1/19/16.
@@ -8,37 +7,40 @@ public class WordGenerator {
     private int wordLength;
     private RandomLetter mRandomLetter;
     private Random mRandom;
+    private char startingLetter;
+    private String newWord;
 
     public WordGenerator(){
         mRandomLetter = new RandomLetter();
         mRandom = new Random();
     }
 
-    public String generateWord(char startingLetter){
-        //Container for result.
-        String result = Character.toString(startingLetter);
-        //Generate new random word length.
-        setRandomWordLength();
+    public String generateWord(char mStartingLetter){
+        this.startingLetter = mStartingLetter;
+        //Empty container for result.
+        this.newWord = Character.toString(startingLetter);
 
-        //Build out word
+        //Generate new random word length.
+        setRandNumWordLength();
+
+        //Build out .
         for(int i = 1; i< this.wordLength; i++){
-            char letter = getrandomLetter();
-            result += Character.toString(letter);
+            char letter = randLetter();
+           newWord += Character.toString(letter);
         }
 
-        return result;
+        return this.newWord;
     }
 
-    private int setRandomWordLength(){
+    private void setRandNumWordLength(){
         int maximum = 10;
         int minimum = 3;
         int range = maximum - minimum + 1;
         this.wordLength = mRandom.nextInt(range) + minimum;
 
-        return this.wordLength;
     }
-    private char getrandomLetter(){
-        return mRandomLetter.getRandomLetter();
+    private char randLetter(){
+        return mRandomLetter.getRandLetter();
     }
 
 

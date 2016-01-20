@@ -13,7 +13,7 @@ public class Generator {
     private int wordCount;
     private ArrayList<String> sentence;
     private WordGenerator mWordGenerator;
-    private int patternIndex = 0;
+
 
     public Generator(char[] mPattern, int mWordCount, boolean mIsSorted){
         this.isSorted = mIsSorted;
@@ -25,13 +25,14 @@ public class Generator {
 
     public static void main(String[] args){
         char[] pattern = {'B','U','L','L'};
-        Generator mGen = new Generator(pattern,1000000, true);
-        mGen.generate();
+        Generator mGen = new Generator(pattern,10000, false);
+        System.out.println(mGen.generate());
 
     }
 
     public String generate(){
         sentence = new ArrayList<String>();
+        int patternIndex = 0;
         //Loop for generating x amount of words
         for(int i = 0; i< this.wordCount; i++){
             //System.out.println("Iteration: "+ i);
@@ -41,36 +42,17 @@ public class Generator {
             else
                 patternIndex = 0;
         }
-        return buildString(sentence);
-    }
 
-    private String buildString(ArrayList<String> sentence){
-        String result = "";
         if(isSorted)
             java.util.Collections.sort(sentence);
-            //return sentence.toString();
-        //Build the raw string based on list.
-        for(String word : sentence){
 
-        }
+        String result = sentence.toString();
+        result = result.substring(1);
+        result = result.substring(0,result.length()-1);
 
-
-        try{
-            long start = System.nanoTime();
-            BufferedWriter bw = new BufferedWriter(new FileWriter("/Users/Doc/Desktop/million.txt"));
-            bw.write(sentence.toString());
-            bw.close();
-            long time = System.nanoTime() - start;
-            System.out.println("Wrote " + result.length()*1000L/time+" MB/s.");
-        }catch (FileNotFoundException e){
-
-        }catch (IOException e){
-
-        }
-
-
-        return sentence.toString();
+        return result;
     }
+
 
     private String generateWord(char startingLetter){
         return mWordGenerator.generateWord(startingLetter);

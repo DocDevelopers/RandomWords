@@ -5,15 +5,15 @@ import static org.junit.Assert.*;
  * Created by Doc on 1/19/16.
  */
 public class GeneratorTests {
-    char[] pattern = {'B','U','L','L'};
-    Generator mGenerator = new Generator(pattern, 1000000, false);
+
 
     @Test
-    public void TestPattern(){
+    public void TestPatternUnSorted(){
+        char[] pattern = {'B','U','L','L'};
+        Generator mGenerator = new Generator(pattern, 100, false);
         String sentence = mGenerator.generate();
-        System.out.println(sentence);
 
-        String[] words = sentence.split("\\s+");
+        String[] words = sentence.split(", ");
 
         char[] firstLetters = new char[words.length];
 
@@ -34,6 +34,22 @@ public class GeneratorTests {
                 patternIndex++;
         }
 
+    }
+
+    @Test
+    public void isAlphabetical(){
+        char[] pattern = {'B','U','L','L'};
+        Generator mGenerator = new Generator(pattern, 100, true);
+        String sentence = mGenerator.generate();
+
+        String[] words = sentence.split(", ");
+
+        for(int i = 0; i< words.length-1; i++){
+
+            assertTrue("Your string is not in alphabetical order!",words[i].compareTo(words[i+1]) <= 0 );
+
+
+        }
     }
 
 }
